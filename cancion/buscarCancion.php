@@ -8,7 +8,7 @@ $can_id = isset($_GET['can_id']) ? intval($_GET['can_id']) : 0;
 if ($can_id > 0) {
     try {
         // Preparar la consulta SQL
-        $stmt = $pdo->prepare('SELECT * FROM Cancion WHERE can_id = :can_id');
+        $stmt = $pdo->prepare('Select C.can_id,G.gen_descipcion,C.can_nombre,C.can_ruta,C.can_duracion from Cancion as C inner join Genero as G ON G.gen_id = C.can_gen_id WHERE can_id = :can_id');
         $stmt->bindParam(':can_id', $can_id, PDO::PARAM_INT);
         $stmt->execute();
 

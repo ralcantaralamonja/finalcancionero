@@ -6,7 +6,7 @@ require_once '../db.php';
 
 try {
     // Consulta para obtener todas las canciones
-    $sql = "SELECT * FROM Cancion";
+    $sql = "Select C.can_id,G.gen_descipcion,C.can_nombre,C.can_ruta,C.can_duracion from Cancion as C inner join Genero as G ON G.gen_id = C.can_gen_id";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
@@ -20,7 +20,7 @@ try {
     foreach ($canciones as $cancion) {
         $resultado[] = [
             'can_id' => $cancion['can_id'],
-            'can_gen_id' => $cancion['can_gen_id'],
+            'gen_descipcion' => $cancion['gen_descipcion'],
             'can_nombre' => $cancion['can_nombre'],
             'can_ruta' => $cancion['can_ruta'],
             'can_duracion' => $cancion['can_duracion']
